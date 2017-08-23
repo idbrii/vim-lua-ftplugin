@@ -214,6 +214,78 @@ function! s:getfunscope()
   return [firstpos, lastpos]
 endfunction
 
+
+function! xolox#lua#jumpfunc(forward, to_end) " {{{1
+  let cursorline = line('.')
+  let [firstpos, lastpos] = s:getfunscope()
+  let destination = a:to_end ? lastpos : firstpos
+  let already_on_target = (!a:to_end && firstpos[1] == cursorline) || (a:to_end && cursorline == lastpos[1])
+  if firstpos[1] > cursorline
+    " function scope followed cursor
+    if a:forward && !already_on_target
+      " good. We found it.
+      let destination = a:to_end ? lastpos : firstpos
+    else
+      " oops. we need to jump past it.
+      execute destination[1] - 1
+      while search('\v<function>', 'bW')
+        "while search('\v<function>', a:forward ? 'W' : 'bW')
+        if xolox#lua#tokeniscode()
+          break
+        endif
+      endwhile
+      let [firstpos, lastpos] = s:getfunscope()
+      let destination = a:to_end ? lastpos : firstpos
+    endif
+  elseif cursorline > lastpos[1]
+    " function scope preceeded cursor
+    if a:forward || already_on_target
+      execute destination[1] + 1
+      while search('\v<function>', 'W')
+        "while search('\v<function>', a:forward ? 'W' : 'bW')
+        if xolox#lua#tokeniscode()
+          break
+        endif
+      endwhile
+      let [firstpos, lastpos] = s:getfunscope()
+      let destination = a:to_end ? lastpos : firstpos
+    else
+      let destination = a:to_end ? lastpos : firstpos
+    endif
+  else
+    " Inside found function.
+  endif
+  let destination = a:to_end ? lastpos : firstpos
+  call setpos('.', destination)
+endfunction
+function! xolox#lua#jumpfunc2(forward, to_end) " {{{1
+  let cpos = [line('.'), col('.')]
+  let fpos = [1, 1]
+  let lpos = [line('$'), 1]
+
+  if a:forward " != a:to_end
+    "while search(s:function_regex, a:forward ? 'W' : 'bW')
+    " go to top of function
+    while search('\v<function>', 'bW')
+      "while search('\v<function>', a:forward ? 'W' : 'bW')
+      if xolox#lua#tokeniscode()
+        break
+      endif
+    endwhile
+  endif
+  let cursorline = line('.')
+  let [firstpos, lastpos] = s:getfunscope()
+  let destination = a:to_end ? lastpos : firstpos
+  if 1 "cursorline == destination[1]
+    " make the mapping repeatable (line wise at least)
+    " execute a:forward ? destination + 1 : destination - 1
+    execute destination[1] + (a:forward ? 1 : -1)
+    let [firstpos, lastpos] = s:getfunscope()
+    let destination = a:to_end ? lastpos : firstpos
+  endif
+  call setpos('.', destination)
+endfunction
+
 function! xolox#lua#jumpthisfunc(forward) " {{{1
   let cpos = [line('.'), col('.')]
   let fpos = [1, 1]

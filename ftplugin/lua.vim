@@ -64,6 +64,10 @@ noremap <buffer> <silent> [[ m':call xolox#lua#jumpthisfunc(0)<Cr>
 noremap <buffer> <silent> ][ m':call xolox#lua#jumpthisfunc(1)<Cr>
 noremap <buffer> <silent> [] m':call xolox#lua#jumpotherfunc(0)<Cr>
 noremap <buffer> <silent> ]] m':call xolox#lua#jumpotherfunc(1)<Cr>
+"noremap <buffer> <silent> [[ m':call xolox#lua#jumpfunc(0,1)<Cr>
+"noremap <buffer> <silent> ][ m':call xolox#lua#jumpfunc(1,1)<Cr>
+"noremap <buffer> <silent> [] m':call xolox#lua#jumpfunc(0,0)<Cr>
+"noremap <buffer> <silent> ]] m':call xolox#lua#jumpfunc(1,0)<Cr>
 call add(s:undo_ftplugin, 'unmap <buffer> [{')
 call add(s:undo_ftplugin, 'unmap <buffer> ]}')
 call add(s:undo_ftplugin, 'unmap <buffer> [[')
