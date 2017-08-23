@@ -7,6 +7,7 @@ let g:xolox#lua#version = '0.8'
 let s:miscdir = expand('<sfile>:p:h:h:h') . '/misc/lua-ftplugin'
 let s:omnicomplete_script = s:miscdir . '/omnicomplete.lua'
 let s:globals_script = s:miscdir . '/globals.lua'
+let s:function_regex = '\v^(\w.*)?\zs<function>'
 
 function! xolox#lua#includeexpr(fname) " {{{1
   " Search module path for matching Lua scripts.
@@ -200,7 +201,8 @@ endfunction
 function! s:getfunscope()
   let firstpos = [0, 1, 1, 0]
   let lastpos = getpos('$')
-  while search('\<function\>', 'bW')
+  " Only jumps between top-level function scope.
+  while search(s:function_regex, 'bW')
     if xolox#lua#tokeniscode()
       let firstpos = getpos('.')
       break
@@ -216,7 +218,8 @@ function! xolox#lua#jumpthisfunc(forward) " {{{1
   let cpos = [line('.'), col('.')]
   let fpos = [1, 1]
   let lpos = [line('$'), 1]
-  while search('\<function\>', a:forward ? 'W' : 'bW')
+  " Only jumps between top-level function scope.
+  while search(s:function_regex, a:forward ? 'W' : 'bW')
     if xolox#lua#tokeniscode()
       break
     endif
@@ -236,7 +239,8 @@ function! xolox#lua#jumpotherfunc(forward) " {{{1
   " jump to the start/end of the function
   call xolox#lua#jumpthisfunc(a:forward)
   " search for the previous/next function
-  while search('\<function\>', a:forward ? 'W' : 'bW')
+  " Only jumps between top-level function scope.
+  while search(s:function_regex, a:forward ? 'W' : 'bW')
     " ignore strings and comments containing 'function'
     if xolox#lua#tokeniscode()
       return 1
