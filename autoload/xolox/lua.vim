@@ -51,6 +51,11 @@ function! xolox#lua#getsearchpath(envvar, luavar) " {{{1
       endtry
     endif
   endif
+  if exists('+shellslash') && &shellslash
+    " Can't use expand() because it will return empty for paths with lua
+    " wildcards because they don't exist.
+    let path = substitute(path, '\\', '/', 'g')
+  endif
   return split(xolox#misc#str#trim(path), ';')
 endfunction
 
