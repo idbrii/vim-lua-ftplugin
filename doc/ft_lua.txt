@@ -43,17 +43,15 @@ code in Vim by providing the following features:
                                                           *ft_lua-installation*
 Installation ~
 
-_Please note that the vim-lua-ftplugin plug-in requires my vim-misc plug-in
-which is separately distributed._
+Install this plugin and the vim-misc plugin with vim-plug or similar plugin
+manager: >
+ Plug 'idbrii/vim-lua-ftplugin'
+ Plug 'xolox/vim-misc'
+<
 
-Unzip the most recent ZIP archives of the vim-lua-ftplugin [8] and vim-misc [9]
-plug-ins inside your Vim profile directory (usually this is '~/.vim' on UNIX
-and '%USERPROFILE%\vimfiles' on Windows), restart Vim and execute the command
-':helptags ~/.vim/doc' (use ':helptags ~\vimfiles\doc' instead on Windows).
-
-If you prefer you can also use Pathogen [10], Vundle [11] or a similar tool to
-install & update the vim-lua-ftplugin [12] and vim-misc [13] plug-ins using a
-local clone of the git repository.
+Or clone these two repositories into ~/.vim/pack/lua-ftplugin/start
+https://github.com/idbrii/vim-lua-ftplugin
+http://github.com/xolox/vim-misc
 
 Now try it out: Edit a Lua script and try any of the features documented above.
 
@@ -120,17 +118,7 @@ References ~
 [4] http://www.lua.org/manual/5.2/manual.html#pdf-loadfile
 [5] http://www.lua.org/manual/5.2/manual.html#pdf-require
 [6] http://www.vim.org/scripts/script.php?script_id=1291
-[7] http://peterodding.com/code/vim/lua-ftplugin/screenshots/omni-completion.png
-[8] http://peterodding.com/code/vim/downloads/lua-ftplugin.zip
-[9] http://peterodding.com/code/vim/downloads/misc.zip
-[10] http://www.vim.org/scripts/script.php?script_id=2332
-[11] https://github.com/gmarik/vundle
-[12] http://github.com/xolox/vim-lua-ftplugin
-[13] http://github.com/xolox/vim-misc
-[14] http://peterodding.com/code/vim/shell/
-[15] http://en.wikipedia.org/wiki/Dynamic-link_library
-[16] http://lua-users.org/wiki/LuaLint
 [17] http://www.vim.org/scripts/script.php?script_id=3625
 [18] http://en.wikipedia.org/wiki/MIT_License
 
-vim: ft=help
+ vim:tw=78:ts=8:ft=help:norl:

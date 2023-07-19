@@ -10,6 +10,27 @@ else
   let b:did_ftplugin = 1
 endif
 
+
+if !exists('g:loaded_lua_ftplugin')
+  try
+    " Do something completely innocent while making sure the vim-misc plug-in
+    " is installed since most commands will fail without it. We specifically
+    " don't use Vim's exists() function because it doesn't load auto-load
+    " scripts that haven't already been loaded yet (last tested on Vim 7.3).
+    call type(g:xolox#misc#version)
+    let g:loaded_lua_ftplugin = 1
+  catch
+    echomsg "Warning: vim-lua-ftplugin requires the vim-misc plugin which is not installed! See :help ft_lua-installation for details."
+    echomsg "Disabling vim-lua-ftplugin."
+    let g:loaded_lua_ftplugin = 0
+  endtry
+elseif g:loaded_lua_ftplugin == 0
+  finish
+endif
+
+
+
+
 " A list of commands that undo buffer local changes made below.
 let s:undo_ftplugin = []
 

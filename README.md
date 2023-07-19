@@ -25,11 +25,16 @@ The [Lua][lua] file type plug-in for [Vim][vim] makes it easier to work with Lua
 
 ## Installation
 
-*Please note that the vim-lua-ftplugin plug-in requires the xolox/vim-misc plug-in which is separately distributed.*
+Install this plugin and the vim-misc plugin with vim-plug or similar plugin
+manager:
+```vimscript
+ Plug 'idbrii/vim-lua-ftplugin'
+ Plug 'xolox/vim-misc'
+```
 
-Unzip the most recent ZIP archives of the [vim-lua-ftplugin] [download-lua-ftplugin] and [vim-misc] [download-misc] plug-ins inside your Vim profile directory (usually this is `~/.vim` on UNIX and `%USERPROFILE%\vimfiles` on Windows), restart Vim and execute the command `:helptags ~/.vim/doc` (use `:helptags ~\vimfiles\doc` instead on Windows).
-
-If you prefer you can also use [Pathogen] [pathogen], [Vundle] [vundle] or a similar tool to install & update the [vim-lua-ftplugin] [github-lua-ftplugin] and [vim-misc] [github-misc] plug-ins using a local clone of the git repository.
+Or clone these two repositories into ~/.vim/pack/lua-ftplugin/start
+* https://github.com/idbrii/vim-lua-ftplugin
+* http://github.com/xolox/vim-misc
 
 Now try it out: Edit a Lua script and try any of the features documented above.
 
