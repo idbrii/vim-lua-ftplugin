@@ -58,10 +58,9 @@ If you're running a version of Vim that supports the Lua Interface for Vim (see 
 
 ## Contact
 
-If you have suggestions or feature requests, check out the available at or
+If you have suggestions or feature requests, first check out the
 deluxe version https://github.com/idbrii/vim-lua-ftplugin/tree/deluxe or the
-original at http://peterodding.com/code/vim/lua-ftplugin If you like this
-plug-in please vote for the original on [Vim Online][script].
+original at http://peterodding.com/code/vim/lua-ftplugin .
 
 If you have any issues with this simplified version, see
 https://github.com/idbrii/vim-lua-ftplugin/issues
@@ -94,7 +93,6 @@ Thanks go out to everyone who has helped to improve the Lua file type plug-in fo
 [pathogen]: http://www.vim.org/scripts/script.php?script_id=2332
 [pp]: http://www.lua.org/manual/5.2/manual.html#pdf-package.path
 [req]: http://www.lua.org/manual/5.2/manual.html#pdf-require
-[script]: http://www.vim.org/scripts/script.php?script_id=3625
 [shell]: http://peterodding.com/code/vim/shell/
 [tob]: http://vimdoc.sourceforge.net/htmldoc/motion.html#text-objects
 [vim]: http://www.vim.org/
