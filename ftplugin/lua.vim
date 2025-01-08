@@ -73,7 +73,17 @@ call add(s:undo_ftplugin, 'unmap <buffer> []')
 call add(s:undo_ftplugin, 'unmap <buffer> ]]')
 
 " Enable extended matching with "%" using the "matchit" plug-in. {{{1
-if exists('loaded_matchit')
+if exists("loaded_matchup")
+  " vim-matchup already handles this extended matching. Copy the settings from
+  " $VIMRUNTIME/ftplugin/lua.vim
+  let b:match_ignorecase = 0
+  let b:match_words =
+    \ '\<\%(do\|function\|if\)\>:' ..
+    \ '\<\%(return\|else\|elseif\)\>:' ..
+    \ '\<end\>,' ..
+    \ '\<repeat\>:\<until\>,' ..
+    \ '\%(--\)\=\[\(=*\)\[:]\1]'
+elseif exists('loaded_matchit')
   let b:match_ignorecase = 0
   let b:match_words = 'xolox#lua#matchit()'
   call add(s:undo_ftplugin, 'unlet! b:match_ignorecase b:match_words b:match_skip')
