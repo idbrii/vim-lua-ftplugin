@@ -63,6 +63,7 @@ function! xolox#lua#help() " {{{1
     let isk_save = &isk
     set iskeyword+=.,:
     let cword = expand('<cword>')
+    let cword_whole = expand('<cWORD>')
   finally
     let &isk = isk_save
   endtry
@@ -71,6 +72,15 @@ function! xolox#lua#help() " {{{1
       call s:lookupmethod(cword, 'lrv-string.', '\v<(byte|char|dump|g?find|format|len|lower|g?match|rep|reverse|g?sub|upper)>')
       call s:lookupmethod(cword, 'lrv-file:', '\v<(close|flush|lines|read|seek|setvbuf|write)>')
       call s:lookupmethod(cword, '', '\v:\w+>')
+      " nvim: vim.api and vim.fn aren't in the helptags.
+      " Use whole word to find the function instead of the command (substitute() vs :substitute).
+      call s:lookupmethod(cword_whole, '', '\vvim.api.\zs\k+\(')
+      call s:lookupmethod(cword_whole, '', '\vvim.fn.\zs\k+\(')
+      call s:lookupmethod(cword, '', '\vvim.api.\zs\k+>')
+      call s:lookupmethod(cword, '', '\vvim.fn.\zs\k+>')
+      call s:lookupmethod(cword, "'", '\vvim.[bgw]?o.\zs\k+>')
+      call s:lookupmethod(cword, '', '\vvim.[gbwtv].\zs\k+>')
+      " /nvim
       call s:lookuptopic('lrv-' . cword)
       call s:lookuptopic('love-' . cword)
       call s:lookuptopic(cword)
