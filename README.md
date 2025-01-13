@@ -86,7 +86,7 @@ Thanks go out to everyone who has helped to improve the Lua file type plug-in fo
 [inex]: http://vimdoc.sourceforge.net/htmldoc/options.html#%27includeexpr%27
 [ll]: http://lua-users.org/wiki/LuaLint
 [lof]: http://www.lua.org/manual/5.2/manual.html#pdf-loadfile
-[lrv]: http://www.vim.org/scripts/script.php?script_id=1291
+[lrv]: https://github.com/idbrii/luarefvim
 [lua]: http://www.lua.org/
 [mit]: http://vimdoc.sourceforge.net/htmldoc/usr_05.html#matchit-install
 [ofu]: http://vimdoc.sourceforge.net/htmldoc/options.html#%27omnifunc%27
